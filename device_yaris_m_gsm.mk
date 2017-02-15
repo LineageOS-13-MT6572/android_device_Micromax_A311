@@ -4,11 +4,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-$(call inherit-product-if-exists, vendor/Micromax/A311/A311-vendor.mk)
+$(call inherit-product-if-exists, vendor/tct/yaris_m_gsm/yaris_m_gsm-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/Micromax/A311/overlay
+DEVICE_PACKAGE_OVERLAYS += device/tct/yaris_m_gsm/overlay
 
-LOCAL_PATH := device/Micromax/A311
+LOCAL_PATH := device/tct/yaris_m_gsm
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
 else
@@ -22,7 +22,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.mt6592
+    lights.mt6572
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -33,7 +33,7 @@ PRODUCT_PACKAGES += \
     tinymix
 
 PRODUCT_PACKAGES += \
-    audio.primary.mt6592
+    audio.primary.mt6572
 
 PRODUCT_PACKAGES += \
     audio_policy.default
@@ -70,7 +70,7 @@ PRODUCT_PACKAGES += \
 #    gsm0710muxd \
 #    gsm0710muxdmd2
 
-PRODUCT_PACKAGES += libmt6592
+PRODUCT_PACKAGES += libmt6572
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=MediaTekRIL
@@ -85,16 +85,23 @@ PRODUCT_COPY_FILES += \
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl \
+    
+# Thermal
+PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/configs/thermal.conf:system/etc/.tp/thermal.conf \
+     $(LOCAL_PATH)/configs/.ht120.mtc:system/etc/.tp/.ht120.mtc \
+     $(LOCAL_PATH)/configs/thermal.off.conf:system/etc/.tp/thermal.off.conf \
+     $(LOCAL_PATH)/configs/thermalstress.cfg:system/etc/.tp/thermalstress.cfg    
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/fstab.mt6592:root/fstab.mt6592 \
-    $(LOCAL_PATH)/rootdir/init.mt6592.rc:root/init.mt6592.rc \
+    $(LOCAL_PATH)/rootdir/fstab.mt6572:root/fstab.mt6572 \
+    $(LOCAL_PATH)/rootdir/init.mt6572.rc:root/init.mt6572.rc \
     $(LOCAL_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
-    $(LOCAL_PATH)/rootdir/init.recovery.mt6592.rc:root/init.recovery.mt6592.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6592.usb.rc:root/init.mt6592.usb.rc \
+    $(LOCAL_PATH)/rootdir/init.recovery.mt6572.rc:root/init.recovery.mt6572.rc \
+    $(LOCAL_PATH)/rootdir/init.mt6572.usb.rc:root/init.mt6572.usb.rc \
     $(LOCAL_PATH)/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab \
-    $(LOCAL_PATH)/rootdir/ueventd.mt6592.rc:root/ueventd.mt6592.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.mt6572.rc:root/ueventd.mt6572.rc \
     $(LOCAL_KERNEL):kernel
 
 # Permissions
@@ -109,8 +116,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
@@ -121,7 +126,7 @@ PRODUCT_COPY_FILES_OVERRIDES += \
     
 PRODUCT_PROPERTY_OVERRIDES := \
 	ro.mediatek.version.release=ALPS.W10.24.p0 \
-	ro.mediatek.platform=MT6592 \
+	ro.mediatek.platform=mt6572 \
 	ro.mediatek.chip_ver=S01 \
 	ro.mediatek.version.branch=KK1.MP1 \
 	ro.mediatek.version.sdk=2 \
@@ -141,6 +146,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni \
+    libfmmt6620 \
+    libfmmt6628 \
+    libfmmt6627 \
+    libfmmt6630 \
     libfmcust \
     libmtkplayer
 
@@ -159,11 +168,11 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := full_A311
-PRODUCT_DEVICE := A311
+PRODUCT_NAME := full_yaris_m_gsm
+PRODUCT_DEVICE := yaris_m_gsm
 
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH := 480
 
 PRODUCT_PACKAGES += \
     librs_jni \

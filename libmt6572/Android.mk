@@ -19,7 +19,7 @@ LOCAL_SRC_FILES := \
     mt6592_ril.cpp
 
 LOCAL_SHARED_LIBRARIES := libbinder
-LOCAL_MODULE := libmt6592
+LOCAL_MODULE := libmt6572
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)

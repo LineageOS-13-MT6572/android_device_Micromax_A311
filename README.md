@@ -1,31 +1,17 @@
-# Build
+Alcatel Pop C2 (Yaris_M_GSM)
+=========================
 
-* Working
-  * Dual SIM
-  * Wifi
-  * Bluetooth
-  * Audio
-  * Sensors
-  * Camera (photo and video recording)
-  * GPS
-  * Screen Record
-  * HD games
-  * Tethering (Wifi, Bluetooth and USB)
-  
-* Not Working
-  * VPN
-  * 2G/3G Switch
+Basic   | Spec Sheet
+-------:|:-------------------------
+CPU     | 1.3GHz Dual-Core MTK6572
+GPU     | Mali 400 MP
+Memory  | 512MB RAM
+Shipped Android Version | 4.2.2
+Current Stable Android Version | 4.4.2
+Storage | 4GB
+Battery | 1400 mAh
+Display | 4" 800 x 480 px
+Camera  | 3.2MPx.
 
-# MTK
 
-Few words about mtk related binaries, services and migration peculiarities.
 
-# Limitations
-
-Services requires root:
-
-`system/core/rootdir/init.rc`
-
-  * surfaceflinger depends on sched_setscheduler calls, unable to change process priority from 'system' user (default user 'system')
-
-  * mediaserver depends on /data/nvram folder access, unable to do voice calls from 'media' user (default user 'media')
